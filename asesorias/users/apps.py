@@ -4,7 +4,7 @@
 from django.apps import AppConfig
 
 
-class UsersAppConfig():
+class UsersAppConfig(AppConfig):
     """Users app config."""
 
     name = 'asesorias.users'

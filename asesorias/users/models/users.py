@@ -3,6 +3,7 @@
 # Django imports
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
 
 # Utilities
 from asesorias.utils.models import AsesoriasModel
@@ -18,7 +19,7 @@ class User(AsesoriasModel, AbstractUser):
     email = models.EmailField(
         'email address',
         unique=True,
-        error_message={
+        error_messages={
             'unique': 'A user with that email already exists.'
         }
     )
@@ -35,8 +36,22 @@ class User(AsesoriasModel, AbstractUser):
         )
     )
 
+    is_teacher = models.BooleanField(
+        'teacher status',
+        default=False,
+        help_text='Set to true depending on what the user chooses'
+    )
+
     is_verified = models.BooleanField(
         'verified',
         default=False,
         help_text='Set to true when user have verified its email address.'
     )
+
+    def __str__(self):
+        """Return username."""
+        return self.username
+
+    def get_short_name(self):
+        """Return username."""
+        return self.username
