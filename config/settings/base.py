@@ -47,6 +47,7 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     'asesorias.users.apps.UsersAppConfig',
+    'asesorias.subjects.apps.SubjectsAppConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

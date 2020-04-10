@@ -1,6 +1,6 @@
 Asesorías
 =============
-> La educación es la única posibilidad de una revolución sin sangre, no violenta y en profundidad de nuestra cultura y nuestros valores.  — Fernando Savater
+> "La educación es la única posibilidad de una revolución sin sangre, no violenta y en profundidad de nuestra cultura y nuestros valores."  — Fernando Savater
 
 
 #### _Recordatorio de comandos para correr el proyecto_
