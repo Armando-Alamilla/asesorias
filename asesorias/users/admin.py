@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 # Models
-from asesorias.users.models import User, Profile, TeacherProfile
+from asesorias.users.models import User, StudentProfile, TeacherProfile
 
 
 class CustomUserAdmin(UserAdmin):
@@ -30,7 +30,7 @@ class CustomUserAdmin(UserAdmin):
     )
 
 
-@admin.register(Profile)
+@admin.register(StudentProfile)
 class ProfileAdmin(admin.ModelAdmin):
     """Profile model admin."""
 

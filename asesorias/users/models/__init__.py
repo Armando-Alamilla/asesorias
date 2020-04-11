@@ -1,3 +1,3 @@
 from .users import User
-from .profiles import Profile
+from .students_profiles import StudentProfile
 from .teachers_profiles import TeacherProfile

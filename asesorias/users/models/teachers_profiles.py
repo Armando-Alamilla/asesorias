@@ -4,7 +4,7 @@
 from django.db import models
 
 # Local models
-from .profiles import Profile as BaseProfile
+from .students_profiles import StudentProfile as BaseProfile
 
 
 class TeacherProfile(BaseProfile):

@@ -7,7 +7,7 @@ from django.db import models
 from asesorias.utils.models import AsesoriasModel
 
 
-class Profile(AsesoriasModel):
+class StudentProfile(AsesoriasModel):
     """Profile model.
     
     A profile holds a user's public data 
