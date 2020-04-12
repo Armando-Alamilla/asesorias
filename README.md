@@ -31,3 +31,22 @@ $ docker-compose run --rm django python manage.py migrate
 ```
 $ docker-compose run --rm django python manage.py createsuperuser
 ```
+
+#### _Abrir consola interactiva de python_
+```
+$ docker-compose run --rm django python manage.py shell_plus
+```
+
+#### _Subir registros de escuelas desde un archivo CSV a la DB_
+1. Abre la consola interactiva de python (comando de arriba)
+```
+$ docker-compose run --rm django python manage.py shell_plus
+```
+2. Importa la función load_schools
+```
+$ from asesorias.utils.csv_loader import load_schools
+```
+3. Llama a la función pasando como argumento el nombre del archivo
+```
+$ load_schools('asesorias/utils/res/schools.csv')
+```
