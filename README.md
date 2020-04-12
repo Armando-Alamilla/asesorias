@@ -47,3 +47,8 @@ $ from asesorias.utils.csv_loader import load_schools
 ```
 $ load_schools('asesorias/utils/res/schools.csv')
 ```
+
+#### _User a debugger_
+```
+import ipdb; ipdb.set_trace()
+```
