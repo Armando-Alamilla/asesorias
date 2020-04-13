@@ -7,42 +7,30 @@ from rest_framework.response import Response
 # Models
 from asesorias.schools.models import School
 
+# Serializer
+from asesorias.schools.serializers import (
+    SchoolSerializer,
+    CreateSchoolSerializer
+)
+
 
 @api_view(['GET'])
 def list_schools(request):
     """List schools."""
 
     schools = School.objects.filter(is_public=True)
-    data = []
+    serializer = SchoolSerializer(schools, many=True)
 
-    for school in schools:
-        data.append({
-            'name': school.name,
-            'slug_name': school.slug_name,
-            'about': school.about,
-            'subjects_offered': school.subjects_offered,
-            'verified': school.verified,
-        })
-
-    return Response(data)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
 def create_school(request):
     """Create school."""
+    
+    serializer = CreateSchoolSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
 
-    name = request.data['name']
-    slug_name = request.data['slug_name']
-    about = request.data.get('about', '')
+    school = serializer.save()
 
-    school = School.objects.create(name=name, slug_name=slug_name, about=about)
-
-    data = {
-        'name': school.name,
-        'slug_name': school.slug_name,
-        'about': school.about,
-        'subjects_offered': school.subjects_offered,
-        'verified': school.verified,
-    }
-
-    return Response(data)
+    return Response(CreateSchoolSerializer(school).data)
