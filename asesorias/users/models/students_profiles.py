@@ -1,4 +1,4 @@
-"""Profile model."""
+"""Student's Profile model."""
 
 # Django imports
 from django.db import models
