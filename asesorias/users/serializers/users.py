@@ -70,12 +70,12 @@ class UserSignUpSerializer(serializers.Serializer):
         """Handle user and profile creation."""
         data.pop('password_confirmation')
 
-        user = User.objects.create_user(**data)
+        user = User.objects.create_user(**data, is_verified=False)
 
         if data['is_teacher'] == True:
-            profile = TeacherProfile.objects.create(user=user)
+            TeacherProfile.objects.create(user=user)
         else:
-            profile = StudentProfile.objects.create(user=user)
+            StudentProfile.objects.create(user=user)
 
         return user
 
@@ -97,7 +97,10 @@ class UserLoginSerializer(serializers.Serializer):
         )
 
         if not user:
-            raise serializers.ValidationError('Invalid credentials')
+            raise serializers.ValidationError('Invalid credentials.')
+
+        if not user.is_verified:
+            raise serializers.ValidationError('Account is not active yet.')
 
         self.context['user'] = user
         return data
