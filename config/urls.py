@@ -9,6 +9,7 @@ urlpatterns = [
     # Django Admin
     path(settings.ADMIN_URL, admin.site.urls),
 
-    path('', include(('asesorias.schools.urls', 'schools'), namespace='school')),
+    path('', include(('asesorias.schools.urls', 'schools'), namespace='schools')),
+    path('', include(('asesorias.users.urls', 'users'), namespace='users')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
