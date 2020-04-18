@@ -2,6 +2,8 @@
 
 # Django imports
 from django.contrib.auth import authenticate, password_validation
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 # Django REST Framework
 from rest_framework import serializers
@@ -77,7 +79,27 @@ class UserSignUpSerializer(serializers.Serializer):
         else:
             StudentProfile.objects.create(user=user)
 
+        self.send_confirmation_email(user)
         return user
+
+    def send_confirmation_email(self, user):
+        """Send account verification link to user."""
+        verification_token = self.gen_verification_token(user)
+        
+        subject = 'Verify your account to start using asesorias.'
+        from_email = 'Asesorias <noreply@aztech-4775.com>'
+        content = render_to_string(
+            'emails/users/account_verification.html',
+            {'token': verification_token, 'user': user}
+        )
+
+        msg = EmailMultiAlternatives(subject, content, from_email, [user.email])
+        msg.attach_alternative(content, "text/html")
+        msg.send()
+
+    def gen_verification_token(self, user):
+        """Create JWT token that user can use to verify its account."""
+        return 'abc'
 
 
 class UserLoginSerializer(serializers.Serializer):
