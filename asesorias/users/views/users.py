@@ -8,8 +8,9 @@ from rest_framework.views import APIView
 # Serializers
 from asesorias.users.serializers import (
     UserModelSerializer,
+    AccountVerificationSerializer,
     UserLoginSerializer,
-    UserSignUpSerializer
+    UserSignUpSerializer,
 )
 
 
@@ -43,3 +44,18 @@ class UserSignUpAPIView(APIView):
         data = UserModelSerializer(user).data
 
         return Response(data, status=status.HTTP_201_CREATED)
+
+
+class AccountVerificationAPIView(APIView):
+    """Account verification API View."""
+
+    def post(self, request, *args, **kwargs):
+        serializer = AccountVerificationSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        
+        data = {
+            'message': 'Congratulations, Your account is verified. Now it\'s time to learn.'
+        }
+
+        return Response(data, status=status.HTTP_200_OK)
