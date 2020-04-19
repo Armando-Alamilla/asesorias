@@ -13,6 +13,9 @@ django-environ==0.4.5
 # Django REST fromework
 djangorestframework>=3.11.0
 
+# JSON Web Token
+pyjwt>=1.7.1
+
 # Passwords security
 argon2-cffi==18.3.0
 

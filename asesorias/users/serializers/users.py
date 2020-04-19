@@ -1,9 +1,11 @@
 """Users serializers."""
 
 # Django imports
+from django.conf import settings
 from django.contrib.auth import authenticate, password_validation
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+from django.utils import timezone
 
 # Django REST Framework
 from rest_framework import serializers
@@ -12,6 +14,10 @@ from rest_framework.authtoken.models import Token
 
 # Models
 from asesorias.users.models import User, StudentProfile, TeacherProfile
+
+# Python utilities
+import jwt
+from datetime import timedelta
 
 
 class UserModelSerializer(serializers.ModelSerializer):
@@ -99,7 +105,16 @@ class UserSignUpSerializer(serializers.Serializer):
 
     def gen_verification_token(self, user):
         """Create JWT token that user can use to verify its account."""
-        return 'abc'
+        exp_date = timezone.now() + timedelta(days=2)
+
+        payload = {
+            'user': user.username,
+            'exp': int(exp_date.timestamp()),
+            'type': 'email_confirmation'
+        }
+
+        token = jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
+        return token.decode()
 
 
 class UserLoginSerializer(serializers.Serializer):
