@@ -22,6 +22,12 @@ class School(AsesoriasModel):
     about = models.CharField('school description', max_length=255)
     picture = models.ImageField(upload_to='schools/pictures', blank=True, null=True)
 
+    members = models.ManyToManyField(
+        'users.User',
+        through='schools.Membership',
+        through_fields=('school', 'user')
+    )
+
     # Stats
     subjects_offered = models.PositiveIntegerField(default=0)
 

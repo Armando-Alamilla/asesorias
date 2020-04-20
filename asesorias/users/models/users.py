@@ -36,12 +36,6 @@ class User(AsesoriasModel, AbstractUser):
         )
     )
 
-    is_teacher = models.BooleanField(
-        'teacher status',
-        default=False,
-        help_text='Set to true depending on what the user chooses'
-    )
-
     is_verified = models.BooleanField(
         'verified',
         default=False,

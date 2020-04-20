@@ -7,7 +7,7 @@ from django.db import models
 from asesorias.utils.models import AsesoriasModel
 
 
-class StudentProfile(AsesoriasModel):
+class Profile(AsesoriasModel):
     """Profile model.
     
     A profile holds a user's public data 
@@ -24,6 +24,15 @@ class StudentProfile(AsesoriasModel):
     )
 
     biography = models.TextField(max_length=500, blank=True)
+
+    # Stats
+    videos_offered = models.PositiveIntegerField(default=0)
+    articles_offered = models.PositiveIntegerField(default=0)
+
+    reputation = models.FloatField(
+        default=0.0,
+        help_text="Teacher's reputation based on the quality of content that share"
+    )
 
     def __str__(self):
         """Return user's str representation"""

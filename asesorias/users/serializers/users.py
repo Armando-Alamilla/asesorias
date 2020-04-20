@@ -13,7 +13,7 @@ from rest_framework.validators import UniqueValidator
 from rest_framework.authtoken.models import Token
 
 # Models
-from asesorias.users.models import User, StudentProfile, TeacherProfile
+from asesorias.users.models import User, Profile
 
 # Python utilities
 import jwt
@@ -60,9 +60,6 @@ class UserSignUpSerializer(serializers.Serializer):
     first_name = serializers.CharField(min_length=2, max_length=30)
     last_name = serializers.CharField(min_length=2, max_length=30)
 
-    # Is teacher
-    is_teacher = serializers.BooleanField()
-
     def validate(self, data):
         """Verify password match."""
         passwd = data['password']
@@ -79,11 +76,7 @@ class UserSignUpSerializer(serializers.Serializer):
         data.pop('password_confirmation')
 
         user = User.objects.create_user(**data, is_verified=False)
-
-        if data['is_teacher'] == True:
-            TeacherProfile.objects.create(user=user)
-        else:
-            StudentProfile.objects.create(user=user)
+        Profile.objects.create(user=user)
 
         self.send_confirmation_email(user)
         return user
