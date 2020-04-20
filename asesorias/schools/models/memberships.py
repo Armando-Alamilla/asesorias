@@ -39,6 +39,10 @@ class Membership(AsesoriasModel):
         related_name='invited_by'
     )
 
+    # Stats
+    videos_offered = models.PositiveIntegerField(default=0)
+    articles_offered = models.PositiveIntegerField(default=0)
+
     # Status
     is_active = models.BooleanField(
         'active status',
