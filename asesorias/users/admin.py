@@ -17,12 +17,14 @@ class CustomUserAdmin(UserAdmin):
         'first_name',
         'last_name',
         'is_client',
+        'is_verified',
         'is_staff'
     )
 
     list_filter = (
         'is_client',
         'is_staff',
+        'is_verified',
         'created',
         'modified'
     )
