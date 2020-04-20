@@ -38,9 +38,11 @@ class MembershipAdmin(admin.ModelAdmin):
         'school',
         'is_admin',
         'is_teacher',
-        'used_invitations',
+        'articles_offered',
+        'videos_offered',
         'invited_by',
-        'is_active'
+        'is_active',
+        'used_invitations',
     )
 
     search_fields = ('user', 'school', 'invited_by')
