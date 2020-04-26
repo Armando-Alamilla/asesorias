@@ -1,13 +1,18 @@
 """Schools URLs."""
 
 # Django imports
-from django.urls import path
+from django.urls import include, path
+
+# Django REST Framework
+from rest_framework.routers import DefaultRouter
 
 # Views
-from asesorias.schools.views import list_schools, create_school
+from .views import schools as school_views
 
+
+router = DefaultRouter()
+router.register(r'schools', school_views.SchoolViewSet, basename='school')
 
 urlpatterns = [
-    path('schools/', list_schools),
-    path('schools/create/', create_school),
+    path('', include(router.urls)),
 ]
