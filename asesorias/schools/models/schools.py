@@ -10,7 +10,7 @@ from asesorias.utils.models import AsesoriasModel
 class School(AsesoriasModel):
     """School model.
 
-    A school is a private group that have subjects where 
+    A school is a private group that have courses where 
     videos and posts are offered and taken by its members. 
     To join a school a user must receive an unique invitation 
     code from an existing school member.
@@ -29,7 +29,7 @@ class School(AsesoriasModel):
     )
 
     # Stats
-    subjects_offered = models.PositiveIntegerField(default=0)
+    courses_offered = models.PositiveIntegerField(default=0)
 
     verified = models.BooleanField(
         'verified school',
@@ -49,4 +49,4 @@ class School(AsesoriasModel):
     class Meta(AsesoriasModel.Meta):
         """Meta class."""
 
-        ordering = ['-subjects_offered']
+        ordering = ['-courses_offered']

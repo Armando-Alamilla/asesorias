@@ -14,7 +14,7 @@ class SchoolAdmin(admin.ModelAdmin):
     list_display = (
         'slug_name',
         'name',
-        'subjects_offered',
+        'courses_offered',
         'is_public',
         'verified',
         'picture',
@@ -23,7 +23,7 @@ class SchoolAdmin(admin.ModelAdmin):
     search_fields = ('slug_name', 'name')
 
     list_filter = (
-        'subjects_offered',
+        'courses_offered',
         'is_public',
         'verified'
     )

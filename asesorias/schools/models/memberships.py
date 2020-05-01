@@ -27,7 +27,7 @@ class Membership(AsesoriasModel):
     is_teacher = models.BooleanField(
         'school teacher',
         default=False,
-        help_text='Teachers can upload content such as videos or articles on school subjects.'
+        help_text='Teachers can upload content such as videos or articles on school courses.'
     )
 
     # Invitations
