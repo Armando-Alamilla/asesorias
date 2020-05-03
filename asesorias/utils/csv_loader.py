@@ -1,6 +1,6 @@
 """
 School fields:
-name, slug_name, about, subjects_offered, verified, is_public
+name, slug_name, about, courses_offered, verified, is_public
 """
 
 # Python utils
