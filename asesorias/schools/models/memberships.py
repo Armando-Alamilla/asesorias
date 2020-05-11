@@ -31,7 +31,6 @@ class Membership(AsesoriasModel):
     )
 
     # Invitations
-    used_invitations = models.PositiveSmallIntegerField(default=0)
     invited_by = models.ForeignKey(
         'users.User',
         null=True,

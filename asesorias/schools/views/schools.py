@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 from asesorias.schools.serializers import SchoolModelSerializer
 
 # Models
-from asesorias.schools.models import School
+from asesorias.schools.models import School, Membership
 
 
 class SchoolViewSet(viewsets.ModelViewSet):
@@ -25,3 +25,16 @@ class SchoolViewSet(viewsets.ModelViewSet):
             return queryset.filter(is_public=True)
 
         return queryset
+
+    def perform_create(self, serializer):
+        """Assign circle admin."""
+        school = serializer.save()
+        user = self.request.user
+        profile = user.profile
+        Membership.objects.create(
+            user=user,
+            profile=profile,
+            school=school,
+            is_admin=True,
+            is_teacher=True,
+        )

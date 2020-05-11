@@ -20,3 +20,8 @@ class SchoolModelSerializer(serializers.ModelSerializer):
             'courses_offered',
             'verified', 'is_public'
         )
+        read_only_fields = (
+            'is_public',
+            'verified',
+            'courses_offered',
+        )

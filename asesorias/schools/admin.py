@@ -42,7 +42,6 @@ class MembershipAdmin(admin.ModelAdmin):
         'videos_offered',
         'invited_by',
         'is_active',
-        'used_invitations',
     )
 
     search_fields = ('user', 'school', 'invited_by')
