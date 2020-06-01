@@ -22,6 +22,7 @@ class SchoolViewSet(mixins.CreateModelMixin,
     """School view set."""
 
     serializer_class = SchoolModelSerializer
+    lookup_filed = 'slug_name'
 
     def get_queryset(self):
         """Restrict list to public-only."""

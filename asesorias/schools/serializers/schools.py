@@ -15,7 +15,7 @@ class SchoolModelSerializer(serializers.ModelSerializer):
 
         model = School
         fields = (
-            'id', 'name', 'slug_name',
+            'name', 'slug_name',
             'about', 'picture',
             'courses_offered',
             'verified', 'is_public'
